@@ -37,6 +37,10 @@ profiles:
 
   # integration: set of `skaffold debug`-like integration tests
   - name: integration
+    build:
+      local:
+        useBuildkit: true
+        push: false
     patches:
       - op: add
         path: /build/artifacts/-

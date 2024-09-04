@@ -17,6 +17,9 @@ profiles:
   # integration: set of `skaffold debug`-like integration tests
   - name: integration
     build:
+      local:
+        useBuildkit: true
+        push: false
       artifacts:
       - image: kubectl
         context: kubectl
