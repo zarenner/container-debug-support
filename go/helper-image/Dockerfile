@@ -4,7 +4,7 @@ ARG BUILDPLATFORM
 ARG TARGETOS
 ARG TARGETARCH
 
-ARG DELVE_VERSION=1.20.1
+ARG DELVE_VERSION=1.23.0
 
 # Patch delve to make defaults for --check-go-version and --only-same-user
 # to be set at build time.  We must install patch(1) to apply the patch.
@@ -19,8 +19,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl --location --output delve.tar.gz https://github.com/go-delve/delve/archive/v$DELVE_VERSION.tar.gz \
   && tar xzf delve.tar.gz \
   && mv delve-$DELVE_VERSION delve-source
-COPY delve-*.patch .
-RUN patch -p0 -d delve-source < delve-as-options.patch
 
 # Produce an as-static-as-possible dlv binary to work on musl and glibc
 RUN cd delve-source \
